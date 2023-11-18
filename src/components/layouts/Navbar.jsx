@@ -43,7 +43,7 @@ const Navbar = () => {
 
   return (
     <header
-      className={`fixed top-0 z-50 w-full rounded-b-full transition-all duration-300 px-5 3xl:px-0 ${
+      className={`fixed top-0 z-50 w-full rounded-b-full transition-all duration-300 ${
         navBg || location.pathname !== "/" ? "bg-gradient" : ""
       }`}
     >

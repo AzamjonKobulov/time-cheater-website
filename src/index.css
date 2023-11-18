@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Cera Pro";
+  src: url("/public/assets/font/CeraPro-Medium.eot");
+  src: local("Cera Pro Medium"), local("CeraPro-Medium"),
+    url("/public/assets/font/CeraPro-Medium.eot?#iefix")
+      format("embedded-opentype"),
+    url("/public/assets/font/CeraPro-Medium.woff2") format("woff2"),
+    url("/public/assets/font/CeraPro-Medium.woff") format("woff"),
+    url("/public/assets/font/CeraPro-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Cera Pro";
+  src: url("/public/assets/font/CeraPro-Bold.eot");
+  src: local("Cera Pro Bold"), local("CeraPro-Bold"),
+    url("/public/assets/font/CeraPro-Bold.eot?#iefix")
+      format("embedded-opentype"),
+    url("/public/assets/font/CeraPro-Bold.woff2") format("woff2"),
+    url("/public/assets/font/CeraPro-Bold.woff") format("woff"),
+    url("/public/assets/font/CeraPro-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Cera Pro";
+  src: url("/public/assets/font/CeraPro-Regular.eot");
+  src: local("Cera Pro Regular"), local("CeraPro-Regular"),
+    url("/public/assets/font/CeraPro-Regular.eot?#iefix")
+      format("embedded-opentype"),
+    url("/public/assets/font/CeraPro-Regular.woff2") format("woff2"),
+    url("/public/assets/font/CeraPro-Regular.woff") format("woff"),
+    url("/public/assets/font/CeraPro-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply font-cera-pro;
+  }
+
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold;
+  }
+}
+
+.bg-gradient {
+  background: linear-gradient(
+      206deg,
+      #1f1d5c 48.98%,
+      rgba(31, 29, 92, 0) 59.42%
+    ),
+    radial-gradient(
+      49.1% 43.39% at 69.53% 134.12%,
+      #4bc2c2 0%,
+      rgba(75, 194, 194, 0) 100%
+    ),
+    radial-gradient(
+      21.7% 18.71% at 41.09% 100.01%,
+      #251751 0%,
+      rgba(35, 22, 78, 0) 100%
+    ),
+    linear-gradient(56deg, #333695 3.29%, #333695 12.15%), #1f1d5c;
+}
+
+.box-shadow {
+  box-shadow: 20px 20px 40px 0px rgba(0, 0, 0, 0.15);
+}
+
+.icon-shadow {
+  filter: drop-shadow(0px 15px 30px #3b3fae);
+}

@@ -46,20 +46,26 @@ const MobileMenu = ({ onClose, isOpen }) => {
         </button>
       </div>
       <div className="w-full h-full flex flex-col justify-between space-y-24 px-5 pb-20">
-        <ul className="h-1/2 my-auto flex flex-col gap-6 text-xl font-medium items-center justify-between">
-          {links.map((link, index) => (
+        <ul className="h-1/2 my-auto flex flex-col gap-6 text-xl text-white font-medium items-center justify-between">
+          {links.map((link) => (
             <li key={link.label}>
-              <NavLink
-                to={link.path}
-                onClick={onClose}
-                className={({ isActive }) =>
-                  isActive
-                    ? "text-brand-dark-blue"
-                    : "whitespace-nowrap text-white lg:hover:text-brand-wind transition-all duration-200"
-                }
-              >
-                {link.label}
-              </NavLink>
+              {link.path === "#advantages" || link.path === "#how-to-use" ? (
+                <a onClick={onClose} href={link.path}>
+                  {link.label}
+                </a>
+              ) : (
+                <NavLink
+                  to={link.path}
+                  onClick={onClose}
+                  className={({ isActive }) =>
+                    isActive
+                      ? "text-brand-dark-blue"
+                      : "whitespace-nowrap lg:hover:text-brand-wind transition-all duration-200"
+                  }
+                >
+                  {link.label}
+                </NavLink>
+              )}
             </li>
           ))}
         </ul>

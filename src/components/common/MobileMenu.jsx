@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 
 import Button from "./Button";
 
@@ -12,6 +12,8 @@ const links = [
 ];
 
 const MobileMenu = ({ onClose, isOpen }) => {
+  const location = useLocation();
+
   return (
     <div
       className={`fixed inset-0 -translate-y-full bg-brand-wind transition-all duration-300 ${
@@ -49,17 +51,33 @@ const MobileMenu = ({ onClose, isOpen }) => {
         <ul className="h-1/2 my-auto flex flex-col gap-6 text-xl text-white font-medium items-center justify-between">
           {links.map((link) => (
             <li key={link.label}>
-              {link.path === "#advantages" || link.path === "#how-to-use" ? (
-                <a onClick={onClose} href={link.path}>
-                  {link.label}
-                </a>
+              {location.pathname === "/" ? (
+                // Home page: Render a tags for "Advantages" and "How-to-use"
+                link.path === "/advantages" || link.path === "/how-to-use" ? (
+                  <a href={link.path.replace("/", "#")}>{link.label}</a>
+                ) : (
+                  <NavLink
+                    to={link.path}
+                    className={({ isActive }) =>
+                      isActive
+                        ? "text-brand-wind"
+                        : "whitespace-nowrap lg:hover:text-brand-wind transition-all duration-200"
+                    }
+                  >
+                    {link.label}
+                  </NavLink>
+                )
               ) : (
+                // Other pages: Always render NavLink for all links
                 <NavLink
-                  to={link.path}
-                  onClick={onClose}
+                  to={
+                    link.path === "/advantages" || link.path === "/how-to-use"
+                      ? "/"
+                      : link.path
+                  }
                   className={({ isActive }) =>
                     isActive
-                      ? "text-brand-dark-blue"
+                      ? "text-brand-wind"
                       : "whitespace-nowrap lg:hover:text-brand-wind transition-all duration-200"
                   }
                 >

@@ -1,13 +1,12 @@
+import React, { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
-
 import Button from "../common/Button";
-import { useEffect, useState } from "react";
 import MobileMenu from "../common/MobileMenu";
 
 const links = [
   { label: "Home", path: "/" },
-  { label: "Advantages", path: "#advantages" },
-  { label: "How to use", path: "#how-to-use" },
+  { label: "Advantages", path: "/advantages" },
+  { label: "How to use", path: "/how-to-use" },
   { label: "Tariffs", path: "/tariffs" },
   { label: "News", path: "/news" },
   { label: "FAQ", path: "/faq" },
@@ -29,7 +28,7 @@ const Navbar = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [location.pathname]);
 
   const handleOpen = () => {
     setIsOpen(true);
@@ -43,7 +42,7 @@ const Navbar = () => {
 
   return (
     <header
-      className={`fixed top-0 z-50 w-full rounded-b-full transition-all duration-300 ${
+      className={`fixed top-0 z-50 w-full rounded-b-full transition-all duration-300 px-2 lg:px-5 3xl:px-0 ${
         navBg || location.pathname !== "/" ? "bg-gradient" : ""
       }`}
     >
@@ -66,11 +65,30 @@ const Navbar = () => {
           <ul className="w-3/4 flex items-center justify-between">
             {links.map((link) => (
               <li key={link.label}>
-                {link.path === "#advantages" || link.path === "#how-to-use" ? (
-                  <a href={link.path}>{link.label}</a>
+                {location.pathname === "/" ? (
+                  // Home page: Render a tags for "Advantages" and "How-to-use"
+                  link.path === "/advantages" || link.path === "/how-to-use" ? (
+                    <a href={link.path.replace("/", "#")}>{link.label}</a>
+                  ) : (
+                    <NavLink
+                      to={link.path}
+                      className={({ isActive }) =>
+                        isActive
+                          ? "text-brand-wind"
+                          : "whitespace-nowrap lg:hover:text-brand-wind transition-all duration-200"
+                      }
+                    >
+                      {link.label}
+                    </NavLink>
+                  )
                 ) : (
+                  // Other pages: Always render NavLink for all links
                   <NavLink
-                    to={link.path}
+                    to={
+                      link.path === "/advantages" || link.path === "/how-to-use"
+                        ? "/"
+                        : link.path
+                    }
                     className={({ isActive }) =>
                       isActive
                         ? "text-brand-wind"

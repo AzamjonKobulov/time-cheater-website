@@ -4,8 +4,8 @@ import Button from "./Button";
 
 const links = [
   { label: "Home", path: "/" },
-  { label: "Advantages", path: "#advantages" },
-  { label: "How to use", path: "#how-to-use" },
+  { label: "Advantages", path: "/advantages" },
+  { label: "How to use", path: "/how-to-use" },
   { label: "Tariffs", path: "/tariffs" },
   { label: "News", path: "/news" },
   { label: "FAQ", path: "/faq" },
@@ -54,14 +54,15 @@ const MobileMenu = ({ onClose, isOpen }) => {
               {location.pathname === "/" ? (
                 // Home page: Render a tags for "Advantages" and "How-to-use"
                 link.path === "/advantages" || link.path === "/how-to-use" ? (
-                  <a href={link.path.replace("/", "#")}>{link.label}</a>
+                  <a href={link.path.replace("/", "#")} onClick={onClose}>
+                    {link.label}
+                  </a>
                 ) : (
                   <NavLink
                     to={link.path}
+                    onClick={onClose}
                     className={({ isActive }) =>
-                      isActive
-                        ? "text-brand-wind"
-                        : "whitespace-nowrap lg:hover:text-brand-wind transition-all duration-200"
+                      isActive ? "text-brand-dark-blue" : ""
                     }
                   >
                     {link.label}
@@ -75,10 +76,9 @@ const MobileMenu = ({ onClose, isOpen }) => {
                       ? "/"
                       : link.path
                   }
+                  onClick={onClose}
                   className={({ isActive }) =>
-                    isActive
-                      ? "text-brand-wind"
-                      : "whitespace-nowrap lg:hover:text-brand-wind transition-all duration-200"
+                    isActive ? "text-brand-dark-blue" : ""
                   }
                 >
                   {link.label}
